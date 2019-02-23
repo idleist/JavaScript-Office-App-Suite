@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Cuprum|Orbitron" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Slightly Different Bootstrap Theme -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>JavaScript App Suite</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Container for welcome message, employee name and work time information -->
+        <div id="welcome--container">
+     
+            <!-- Clock Section -->
+            <section id="clock">
+                <!-- Clock -->
+                <div class="clock">
+                    <div class="clock--face">
+                        <div class="hand hour__hand"></div>
+                        <div class="hand min__hand"></div>
+                        <div class="hand second__hand"></div>
+                    </div>
+                </div>
+                <!-- Empty Div Placeholders for countdown timers-->
+                <div id="countdown">
+                    <div id="countdown--container">
+                        <i class="fas fa-users"></i>
+                        <div id="countdown--meeting"></div>
+                    </div>
+                    <div id="countdown--container">
+                        <i class="fas fa-coffee"></i>
+                        <div id="countdown--breaktime"></div>
+                    </div>
+                </div>
+            </section>
+            <div id="welcome">
+                <div id="welcome--message"></div>
+                <div id="welcome--information"></div>
+                <!-- Logout Buttons -->
+                <button id="logout--button" type="button">Logout</button>
+                <button id="clear--button" type="button">Logout and Clear Storage</button>
+            </div>
+        </div>
+        
+
+        <!-- App Icons -->
+        <section id="app--screen">
+            <div class="app--selector">
+                <button type='button' class="app--icon" data-display="todo"><i class="fas fa-list-ul"></i></button>
+                <p class="app--label">Todo</p>
+            </div>
+            <div class="app--selector">
+                <button type='button' class="app--icon" data-display="breakTime"><i class="fas fa-coffee" ></i></button>
+                <p class="app--label">Breaks</p>
+            </div>
+            <div class="app--selector">
+                <button type='button' class="app--icon" data-display="meetings"><i class="fas fa-users"></i></button>
+                <p class="app--label">Meetings</p>
+            </div>
+            <div class="app--selector">
+                <button type='button' class="app--icon" data-display="tunes"><i class="fas fa-music"></i></button>
+                <p class="app--label">Tunes</p>
+            </div>
+            <div class="app--selector">
+                <button type='button' class="images--icon" onclick="openImagesPage()"><i class="fas fa-images"></i></button>
+                <p class="app--label">Images</p>
+            </div>
+            <div class="app--selector">
+                <button type='button' class="game--icon" onclick="secretNumberGame()"><i class="fas fa-gamepad"></i></button>
+                <p class="app--label">Game</p>
+            </div> 
+            <div class="app--selector last__button">
+                <button type='button' class="app--icon" data-display="contacts"><i class="fas fa-user"></i></button>
+                <p class="app--label">Contacts</p>
+            </div>  
+        </section>
+
+        <!-- Todo List Section -->
+        <section class="section" id="todo" data-display="todo">
+            <div class="exit"><i class="far fa-times-circle sectionClose"></i></div>
+            <h2 id="todo--heading">To Do List</h2>
+            <div class="container">
+                <!--Form for inputting daily todos-->
+                <form id="todo--form">
+                    <div class="form-group">
+                        <label for="todo--task">To Do</label>
+                        <input type="text" class="form-control" id="todo--task" aria-describedby="emailHelp" placeholder="Task" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="todo--description">Task Description</label>
+                        <input type="text" class="form-control" id="todo--description" placeholder="Task Description">
+                    </div required>
+                    <button type="submit" class="btn btn-danger">Save Todo</button>
+                </form>
+                <!--Placeholder Div in which to display new todos-->
+                <div id="todo--container"></div>
+            </div>
+            
+        </section>
+
+        <!-- Break Time Section -->
+        <section class="section" id="breakTime" data-display="breakTime">
+            <div class="exit"><i class="far fa-times-circle sectionClose"></i></div>
+            <h2 id="breakTimes--heading">Break Times</h2>
+            <div class="container">
+                <!--Form for inputting next breaktime -->
+                <form id="breakTime--form">
+                    <div class="form-group">
+                        <label for="breakTime--task">Break</label>
+                        <input type="text" class="form-control" id="breakTime--task"  placeholder="Break" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="breakTime--time">Break Time</label>
+                        <input type="time" class="form-control" id="breakTime--time">
+                    </div required>
+                    <button type="submit" class="btn btn-danger">Store Breaktime</button>
+                </form>
+
+                <!--Container Div in which to display new breaktime-->
+                <div id="breakTime--container"></div>
+            </div>
+        </section>
+
+        <!-- Meetings Section -->
+        <section class="section" id="meetings" data-display="meetings">
+            <div class="exit"><i class="far fa-times-circle sectionClose"></i></div>
+            <h2 id="meetings--heading">Meetings and Appointments</h2>
+            <div class='container'>
+                <!-- Meetings form -->
+                <form id="meetings--form">
+                    <div class="form-group">
+                        <label for="meetings--name">Meeting</label>
+                        <input class="form-control" type="text" id="meetings--name" placeholder="Meeting Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="meetings--description">Meeting Description</label>
+                        <input class="form-control" type="text" id="meetings--description" placeholder="Meeting Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="meetings--time">Meeting Time</label>
+                        <input class="form-control" type="time" id="meetings--time">
+                    </div>
+                    <input type="submit" class="btn btn-danger" id="meetings--submit" value="Save Meeting">
+                </form>
+
+                <!--Container Div in which to display new meetings -->
+                <div id="meeting"></div>
+            </div>
+            
+            
+        </section>
+
+        <!-- Playing Tunes Section -->
+        <section class="section" id="tunes" data-display="tunes">
+            <div class="exit"><i class="far fa-times-circle sectionClose"></i></div>
+            <h2 id="tunes--header">Tunes to Work To</h2>
+            <div class="container">
+                <!-- Placeholder Div for YouTube API -->
+                <div id="musicvideo"></div>
+            </div>
+            
+        </section>
+
+        
+
+        <!-- Contacts Section -->
+        <section class="section" id="contacts" data-display="contacts">
+            <div class="exit"><i class="far fa-times-circle sectionClose"></i></div>
+            <h2 id="contacts--header">Contacts</h2>
+            <!--Search form to easily sort contacts -->
+            <div id="contacts--search">
+                <i class="fas fa-search"></i>
+                <input type="text" class="contacts--search" placeholder="Enter Name">
+            </div>
+
+            <!-- buttons to sort contacts by phone number, alphabetically or reverse -->
+            <div id="contacts--buttons">
+                <button class="contacts--button fullList"><i class="fas fa-list-ul"></i></button>
+                <button class="contacts--button reverse"><i class="fas fa-arrows-alt-v"></i></button>
+                <button class="contacts--button phone"><i class="fas fa-phone"></i></button> 
+                <button class="contacts--button alphabet"><i class="fas fa-sort-alpha-down"></i></button>         
+            </div>
+            <!--Container Div in which to display contacts -->
+            <div id="contacts--container"></div>
+            
+            
+        </section>
+        <!--Container Div in which to display browser information -->
+        <div id="browser--info"></div>
+
+        <!-- Login Screen -->
+        <div id="login">
+            <div id="login--container">
+                <h2 class="login--heading">Welcome to TechCore Industries</h2>
+                <h3 class="login--subheading">Please Login</h3>
+                <!-- Login form -->
+                <form id="login--form">
+                    <div class="form-group">
+                        <label for="login--name">Enter Your Name</label>
+                        <input type="text" name="login--name" id="login--name" placeholder="Enter Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="login--start">Work Start Time</label>
+                        <input type="time" name="login--start" id="login--start" placeholder="Enter Your Start Time" >
+                    </div>
+                    <div class="form-group">
+                        <label for="login--finish">Work Finish Time</label>
+                        <input type="time" name="login--finish" id="login--finish" placeholder="Enter Your Finish Time" >
+                    </div>
+                    <input id="login--submit" class="btn btn-primary" type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>

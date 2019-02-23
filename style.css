@@ -1,0 +1,672 @@
+/** CSS RESET **/
+
+html, body, div, iframe,
+h1, h2, h3, h4, h5, h6, p, a, img, b, u, i, form, label, 
+section{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/** GENERAL SITE CSS **/
+
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background: rgb(34,195,172);
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(34,195,172,1)), color-stop(49%, rgba(40,177,196,1)), to(rgba(45,105,253,1)));
+    background: -webkit-linear-gradient(bottom, rgba(34,195,172,1) 0%, rgba(40,177,196,1) 49%, rgba(45,105,253,1) 100%);
+    background: -o-linear-gradient(bottom, rgba(34,195,172,1) 0%, rgba(40,177,196,1) 49%, rgba(45,105,253,1) 100%);
+    background: linear-gradient(0deg, rgba(34,195,172,1) 0%, rgba(40,177,196,1) 49%, rgba(45,105,253,1) 100%);
+    font-family: 'Cuprum', sans-serif;
+    color: white;
+	line-height: 1;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+.section {
+	display: none;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+
+
+/** LOGIN SCREEN **/
+#login{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    display: none;
+}
+
+#login--container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#login--container form{
+    width: 80%;
+    margin-top: 20px;
+    font-size: 0.9em;
+    
+}
+
+#login--container .form-group{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+#login--container .btn {
+    width: 100%;
+  }
+
+/** CSS GRID FOR POSITIONING WELCOME INFO AND CLOCK **/
+#welcome--container {
+    display: -ms-grid;
+    display: grid;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "clockContainer"
+                         "messageContainer";
+}
+
+#welcome {
+    grid-row: 2;
+    -ms-grid-row: 2;
+    grid-column: 1;
+    -ms-grid-column: 1;
+    grid-area: messageContainer;
+    text-align: center;
+}
+
+#clock {
+    -ms-grid-row: 1;
+    grid-row: 1;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    display: -ms-grid;
+    display: grid;
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "clock countdown";
+    grid-area: clockContainer;
+    padding: 10px;  
+}
+
+.clock {
+    grid-row: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: clock;
+
+}
+
+#countdown {
+    grid-row: 1;
+    grid-column: 2;
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: countdown;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;   
+}
+
+#countdown i {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+/** CLOCK AND COUNTDOWN DIVS **/
+
+/* Clock Styling */
+.clock {
+    width: 125px;
+    height: 125px;
+    border: 3px solid white;
+    border-radius: 20% 5%;
+    position: relative;
+    padding: 2rem;
+
+}
+.clock--face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
+          transform: translateY(-2px); /*account for the height of the clock hands*/
+}
+
+.hand {
+  width: 50%;
+  position: absolute;
+  border-radius: 5px;
+  top: 50%;
+  -webkit-transform-origin: 100%;
+      -ms-transform-origin: 100%;
+          transform-origin: 100%;
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: all 0.05s;
+  -o-transition: all 0.05s;
+  transition: all 0.05s;
+  -webkit-transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+       -o-transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+          transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hour__hand {
+  background-color:#666;
+  height: 3px;
+}
+
+.min__hand{
+  background-color: white;
+  height: 2px;
+}
+
+.second__hand {
+  background-color: red;
+  height: 2px;
+}
+
+/** WELCOME / EMPLOYEE INFORMATION CSS **/
+.welcome--message {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.welcome--header {
+    font-size: 20px;
+}
+
+.welcome--date {
+    font-size: 13px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.welcome--text {
+    font-size: 10px;
+}
+
+#welcome button{
+    font-size: 10px;
+    color: white;
+    background: none;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+/** APP BUTTONS **/
+/* App Screen positioning */
+#app--screen{
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 10px;
+    text-align: center;
+}
+
+/* App Buttons */
+button[class*='--icon']{
+    background: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+}
+  
+button[class*='--icon']:focus{
+    outline: 0;
+}
+
+button[class*='--icon'] i{
+    font-size: 20px;
+    color: white;
+    background-color: none;
+}
+
+/* The contacts button */
+.last__button{
+    grid-column: 1;
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    -ms-grid-column-span: 3;
+    grid-column-end: span 3;
+}
+
+.last__button button{
+    width: 90%;
+    border-radius: 5px;
+}
+
+/* Browser Info */
+#browser--info {
+    text-align: center;
+    color: #333;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+/** APP OPEN FUNCTIONALITY / SECTION CSS **/
+.section {
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+.display{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.sectionClose {
+    color: white;
+    opacity: 1;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+}
+
+.section h2 {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.section h6{
+    /* font-size: 20px; */
+    color: #222;
+}
+
+/** TODOS, MEETINGS, BREAKTIME SAVED ITEMS **/
+.todo--item, .meeting--item, .break--item {
+    width: 100%;
+    background-color: white;
+    color: #555;
+    font-size: 15px;
+    border-radius: 5px;
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  
+.close {
+    color: red;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 20px;
+}
+
+.completed {
+    background-color: rgb(216, 77, 77);
+    text-decoration: line-through; 
+}
+
+#meeting, #todo--container, #contacts--container, #breakTime--container{
+    width: 100%;
+    height: 35%;
+    margin-top: 25px;
+    overflow-y: scroll;
+}
+
+/** TUNES SECTION **/
+iframe{
+    width: 100%;
+    height: 200px;
+}
+
+/** IMAGES PAGE **/
+#images{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#images h1{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#image--container{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 30px;
+}
+
+.image--container img{
+    -webkit-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+#backButton {
+    background: none;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto 0 auto;
+}
+
+
+/** CONTACTS SECTION **/
+i.fa-search {
+    color: white;
+}
+
+#contacts--search{
+    text-align: center;
+}
+.contacts--search{
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#contacts--buttons{
+    text-align: center;
+}
+
+.contacts--button {
+    border: 2px solid white;
+    border-radius: 50%;
+    background: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px 10px 5px;
+}
+
+.contacts--button:focus {
+    outline: none;
+}
+
+.contacts--container{
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 5px 10px 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.contacts--name{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 20px;
+}
+
+p.contact--name {
+    margin-left: 10px;
+}
+
+/** COUNTDOWN FINISHED ANIMATION **/
+.eventstart{
+    color: green;
+    -webkit-animation: flash 1s ease-in infinite;
+            animation: flash 1s ease-in infinite;
+}
+  
+@-webkit-keyframes flash{
+    0%{
+      color: green;
+    }
+    50%{
+      color: red;
+    }
+}
+  
+@keyframes flash{
+    0%{
+      color: green;
+    }
+    50%{
+      color: red;
+    }
+}
+
+
+/** MEDIA QUERIES **/
+
+/* Tablets */
+
+/* Landscape */
+@media only screen and (min-width : 768px){
+    /* LOGIN SECTION */
+    .login--heading {
+        font-size: 3em;
+    }
+
+    #login--container form{
+        width: 70%;
+        font-size: 1.6em;   
+    }
+
+    #login--container .btn {
+        font-size: 0.9em;
+    }
+
+    /* WELCOME INFORMATION */
+    #welcome--container {
+            -ms-grid-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            -ms-grid-rows: 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: "messageContainer clockContainer";
+    }
+
+    #welcome {
+        text-align: left;
+        padding: 10px;
+    }
+
+    /* TUNES */
+    #tunes .container{
+        text-align: center;
+    }
+
+    iframe{
+        width: 70%;
+        height: 300px;
+    }
+
+    /* Images */
+    #image--container{
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+
+    #image--container img {
+        margin: 0 10px;
+    }
+    #welcome {
+      grid-row: 1;
+      grid-column: 1;
+		  -ms-grid-row: 1;
+		  -ms-grid-column: 1;
+    }
+    #clock {
+      grid-row: 1;
+      grid-column: 2;
+		  -ms-grid-row: 1;
+		  -ms-grid-column: 2;
+    }
+
+}
+
+/* Desktop */
+@media only screen  and (min-width : 1224px) {
+    #clock {
+            -ms-grid-columns: 2fr 1fr;
+            grid-template-columns: 2fr 1fr;
+            grid-template-areas: "countdown clock";
+        padding: 40px; 
+        justify-items: end; 
+    }
+
+    #welcome {
+        padding: 30px;
+    }
+
+    #countdown {
+        font-size: 15px;   
+    }
+    
+    #countdown i {
+        font-size: 20px;
+    }
+
+    .clock {
+        width: 150px;
+        height: 150px;
+    }
+
+    .welcome--message {
+        font-size: 40px;
+    }
+    
+    .welcome--header {
+        font-size: 30px;
+    }
+    
+    .welcome--date {
+        font-size: 20px;
+    }
+    
+    .welcome--text {
+        font-size: 15px;
+    }
+    
+    #welcome button{
+        font-size: 15px;
+        padding: 5px;
+    }
+
+    button[class*='--icon']{
+        height: 60px;
+        width: 60px;
+    }
+    
+    button[class*='--icon'] i{
+        font-size: 30px;
+    }
+    
+    .last__button button{
+        width: 75%;
+    }
+
+    #browser--info {
+        font-size: 15px;
+        margin-top: 30px;
+    }
+
+    iframe{
+        height: 400px;
+    }
+
+    #meeting, #todo--container, #contacts--container, #breakTime--container{
+        height: 50%;
+    }
+    .clock {
+      grid-row: 1;
+      grid-column: 2;
+		  -ms-grid-row: 1;
+		  -ms-grid-column: 2; 
+    }
+    #countdown {
+      grid-row: 1;
+      grid-column: 1;
+		  -ms-grid-row: 1;
+		  -ms-grid-column: 1; 
+    }
+
+    
+}
